@@ -41,7 +41,7 @@ DatabaseConnect()
 
 
 
-app.post('/register', async (req, res) => {
+app.post('/register',cors(corsOptions) ,async (req, res) => {
    
     
    
@@ -69,7 +69,7 @@ app.post('/register', async (req, res) => {
     }
 })
 
-app.post('/login',async(req,res)=>{
+app.post('/login',cors(corsOptions),async(req,res)=>{
   
   const db = client.db('commerce') 
     const collection =  db.collection("users")   
@@ -100,7 +100,7 @@ app.post('/login',async(req,res)=>{
   }
 })
 
-app.post('/mail', async (req , res)=>{
+app.post('/mail', cors(corsOptions),async (req , res)=>{
   const db = client.db('commerce') 
     const collection =  db.collection("users")   
     const email = await collection.findOne({ email:  req.body.email})
@@ -146,7 +146,7 @@ app.post('/mail', async (req , res)=>{
 
 
 })
-app.post('/verification',async (req,res)=>{
+app.post('/verification', cors(corsOptions),async (req,res)=>{
 
   try{
     const db = client.db('commerce') 
@@ -171,7 +171,7 @@ app.post('/verification',async (req,res)=>{
 
 })
 
-app.post('/check_login' ,async (req , res)=>{
+app.post('/check_login' ,cors(corsOptions),async (req , res)=>{
   const db = client.db('commerce') 
   const collection =  db.collection("users")
   const result = await collection.findOne({ email:  req.body.email})
@@ -180,7 +180,7 @@ app.post('/check_login' ,async (req , res)=>{
 
 })
 
-app.post('/reset_pass',async (req , res)=>{
+app.post('/reset_pass',cors(corsOptions),async (req , res)=>{
   const db = client.db('commerce') 
   const collection =  db.collection("users")   
   const email = await collection.findOne({ email:  req.body.email})
@@ -197,7 +197,7 @@ app.post('/reset_pass',async (req , res)=>{
  
   
 })
-app.post('/logout',async (req , res)=>{
+app.post('/logout',cors(corsOptions),async (req , res)=>{
   const db = client.db('commerce') 
   const collection =  db.collection("users")   
   const email = await collection.findOne({ email:  req.body.email})
