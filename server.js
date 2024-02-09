@@ -53,7 +53,7 @@ app.post('/register', async (req, res) => {
      res.status(200).json({status : false})
    }else{
 
-      const password = CryptoJS.AES.encrypt(JSON.stringify(req.body.pass), '@yutslh1267tfriifksoit546^&83').toString()
+      const password = CryptoJS.AES.encrypt(JSON.stringify(req.body.pass), process.env.KEY).toString()
       const user =  {
         first_name: req.body.fname,
         last_name: req.body.lname,
