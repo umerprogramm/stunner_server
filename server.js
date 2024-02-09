@@ -109,7 +109,7 @@ app.post('/mail', async (req , res)=>{
     console.log(email.email)
     const ottp = Math.floor(Math.random() * 10000) + 1
     if (email.email) {
-      res.status(200).json({login : true})
+      
     const inserted_ottp =   await collection.updateOne({ email: req.body.email  }, { $set: { otp : ottp } });
         let transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -126,9 +126,9 @@ app.post('/mail', async (req , res)=>{
   };
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.log(error);
+      res.status(200).json({login : false})
     } else {
-      console.log('Email sent: ' + info.response);
+      res.status(200).json({login : true})
     }
   });
     }else{
